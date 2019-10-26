@@ -52,6 +52,16 @@ public class Money_Script : MonoBehaviour
 
         mowingcost = 500;
         mowinglevel = 0;
+        
+        Load();
+    }
+
+    public void Load(){
+
+    }
+
+    public void Save(){
+
     }
 
     public void Update(){
@@ -64,13 +74,13 @@ public class Money_Script : MonoBehaviour
 
         QuantityText.text = "x" + quantity;
 
-        CoffeeCostText.text = "+" + quantity + "\n" + "Cost:\n" + truncation(((coffeecost/(-0.1))*(1-(Math.Pow(1.1, quantity))))) + " money";
+        CoffeeCostText.text = "+" + quantity + "\n\n" + "Cost:\n" + truncation(((coffeecost/(-0.1))*(1-(Math.Pow(1.1, quantity))))) + " money";
         CoffeeLevelText.text = coffeelevel + "/5000 shops";
 
-        BurgerCostText.text = "+" + quantity + "\n" + "Cost:\n" + truncation(((burgercost/(-0.1))*(1-(Math.Pow(1.1, quantity))))) + " money";
+        BurgerCostText.text = "+" + quantity + "\n\n" + "Cost:\n" + truncation(((burgercost/(-0.1))*(1-(Math.Pow(1.1, quantity))))) + " money";
         BurgerLevelText.text = burgerlevel + "/4000 joints";
 
-        MowingCostText.text = "+" + quantity + "\n" + "Cost:\n" + truncation(((mowingcost/(-0.1))*(1-(Math.Pow(1.1, quantity))))) + " money";
+        MowingCostText.text = "+" + quantity + "\n\n" + "Cost:\n" + truncation(((mowingcost/(-0.1))*(1-(Math.Pow(1.1, quantity))))) + " money";
         MowingLevelText.text = mowinglevel + "/2500 mowers";
 
         money += moneypersecond * Time.deltaTime;
