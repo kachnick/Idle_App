@@ -1,1 +1,1 @@
-# Idle_App
+# Idle_App: Jared is Cool
