@@ -31,36 +31,42 @@ public class Money_Script : MonoBehaviour
     public Text BurgerLevelText;
     public double burgercost;
     public int burgerlevel;
+    public Image BurgerLevelBar;
 
     //mowing
     public Text MowingCostText;
     public Text MowingLevelText;
     public double mowingcost;
     public int mowinglevel;
+    public Image MowingLevelBar;
 
     //mining
     public Text MiningCostText;
     public Text MiningLevelText;
     public double miningcost;
     public int mininglevel;
+    public Image MiningLevelBar;
     
     //auto
     public Text CarCostText;
     public Text CarLevelText;
     public double carcost;
     public int carlevel;
+    public Image CarLevelBar;
 
     //nuclear
     public Text NuclearCostText;
     public Text NuclearLevelText;
     public double nuclearcost;
     public int nuclearlevel;
+    public Image NuclearLevelBar;
 
     //tech
     public Text TechCostText;
     public Text TechLevelText;
     public double techcost;
     public int techlevel;
+    public Image TechLevelBar;
 
     public void Start(){
         money = 0;
@@ -135,7 +141,13 @@ public class Money_Script : MonoBehaviour
     }
 
     public string truncation (double value){
-        if(value >= 1000000000000){
+        if(value >= 1000000000000000000){
+            return string.Format("{0:0.00}", Math.Round(value/1000000000000000000, 2)) + " Quin.";
+        }
+        else if(value >= 1000000000000000){
+            return string.Format("{0:0.00}", Math.Round(value/1000000000000000, 2)) + " Quad.";
+        }
+        else if(value >= 1000000000000){
             return string.Format("{0:0.00}", Math.Round(value/1000000000000, 2)) + " Tri.";
         }
         else if(value >= 1000000000){
@@ -182,7 +194,8 @@ public class Money_Script : MonoBehaviour
             money -= ((coffeecost/(-0.05))*(1-(Math.Pow(1.05, quantity)))) ;
             coffeelevel += quantity;
             coffeecost *= Math.Pow(1.05, quantity);
-            CoffeeLevelBar.fillAmount = coffeelevel/6000;
+            float temp1 = 6000;
+            CoffeeLevelBar.fillAmount = (float) (coffeelevel/temp1);
         }
     }
 
@@ -191,6 +204,8 @@ public class Money_Script : MonoBehaviour
             money -= ((burgercost/(-0.05))*(1-(Math.Pow(1.05, quantity)))) ;
             burgerlevel += quantity;
             burgercost *= Math.Pow(1.05, quantity);
+            float temp2 = 5000;
+            BurgerLevelBar.fillAmount = (float) (burgerlevel/temp2);
         }
     }
 
@@ -199,6 +214,8 @@ public class Money_Script : MonoBehaviour
             money -= ((mowingcost/(-0.05))*(1-(Math.Pow(1.05, quantity))));
             mowinglevel += quantity;
             mowingcost *= Math.Pow(1.05, quantity);
+            float temp3 = 4000;
+            MowingLevelBar.fillAmount = (float) (mowinglevel/temp3);
         }
     }
 
@@ -207,6 +224,8 @@ public class Money_Script : MonoBehaviour
             money -= ((miningcost/(-0.05))*(1-(Math.Pow(1.05, quantity))));
             mininglevel += quantity;
             miningcost *= Math.Pow(1.05, quantity);
+            float temp4 = 3000;
+            MiningLevelBar.fillAmount = (float) (mininglevel/temp4);
         }
     }
 
@@ -215,6 +234,8 @@ public class Money_Script : MonoBehaviour
             money -= ((carcost/(-0.05))*(1-(Math.Pow(1.05, quantity))));
             carlevel += quantity;
             carcost *= Math.Pow(1.05, quantity);
+            float temp5 = 2500;
+            CarLevelBar.fillAmount = (float) (carlevel/temp5);
         }
     }
 
@@ -223,6 +244,8 @@ public class Money_Script : MonoBehaviour
             money -= ((nuclearcost/(-0.05))*(1-(Math.Pow(1.05, quantity))));
             nuclearlevel += quantity;
             nuclearcost *= Math.Pow(1.05, quantity);
+            float temp6 = 2000;
+            NuclearLevelBar.fillAmount = (float) (nuclearlevel/temp6);
         }
     }
 
@@ -231,6 +254,8 @@ public class Money_Script : MonoBehaviour
             money -= ((techcost/(-0.05))*(1-(Math.Pow(1.05, quantity))));
             techlevel += quantity;
             techcost *= Math.Pow(1.05, quantity);
+            float temp7 = 1000;
+            TechLevelBar.fillAmount = (float) (techlevel/temp7);
         }
     }
 }
