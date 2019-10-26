@@ -37,6 +37,30 @@ public class Money_Script : MonoBehaviour
     public double mowingcost;
     public int mowinglevel;
 
+    //mining
+    public Text MiningCostText;
+    public Text MiningLevelText;
+    public double miningcost;
+    public int mininglevel;
+    
+    //auto
+    public Text CarCostText;
+    public Text CarLevelText;
+    public double carcost;
+    public int carlevel;
+
+    //nuclear
+    public Text NuclearCostText;
+    public Text NuclearLevelText;
+    public double nuclearcost;
+    public int nuclearlevel;
+
+    //tech
+    public Text TechCostText;
+    public Text TechLevelText;
+    public double techcost;
+    public int techlevel;
+
     public void Start(){
         money = 0;
         moneypersecond = 0;
@@ -52,6 +76,18 @@ public class Money_Script : MonoBehaviour
 
         mowingcost = 500;
         mowinglevel = 0;
+
+        miningcost = 2000;
+        mininglevel = 0;
+
+        carcost = 5000;
+        carlevel = 0;
+
+        nuclearcost = 20000;
+        nuclearlevel = 0;
+
+        techcost = 50000;
+        techlevel = 0;
         
         Load();
     }
@@ -70,18 +106,30 @@ public class Money_Script : MonoBehaviour
         MoneyText.text = "Money: " + truncation(money);
         MoneyPerSecText.text = truncation(moneypersecond) + " money/s";
 
-        moneypersecond = coffeelevel + (5*burgerlevel) + (20*mowinglevel);
+        moneypersecond = coffeelevel + (5*burgerlevel) + (20*mowinglevel) + (50*mininglevel) + (100*carlevel) + (250*nuclearlevel) + (500*techlevel);
 
         QuantityText.text = "x" + quantity;
 
         CoffeeCostText.text = "+" + quantity + "\n\n" + "Cost:\n" + truncation(((coffeecost/(-0.1))*(1-(Math.Pow(1.1, quantity))))) + " money";
-        CoffeeLevelText.text = coffeelevel + "/5000 shops";
+        CoffeeLevelText.text = coffeelevel + "/6000 shops";
 
         BurgerCostText.text = "+" + quantity + "\n\n" + "Cost:\n" + truncation(((burgercost/(-0.1))*(1-(Math.Pow(1.1, quantity))))) + " money";
-        BurgerLevelText.text = burgerlevel + "/4000 joints";
+        BurgerLevelText.text = burgerlevel + "/5000 joints";
 
         MowingCostText.text = "+" + quantity + "\n\n" + "Cost:\n" + truncation(((mowingcost/(-0.1))*(1-(Math.Pow(1.1, quantity))))) + " money";
-        MowingLevelText.text = mowinglevel + "/2500 mowers";
+        MowingLevelText.text = mowinglevel + "/4000 mowers";
+        
+        MiningCostText.text = "+" + quantity + "\n\n" + "Cost:\n" + truncation(((miningcost/(-0.1))*(1-(Math.Pow(1.1, quantity))))) + " money";
+        MiningLevelText.text = mininglevel + "/3000 shafts";
+
+        CarCostText.text = "+" + quantity + "\n\n" + "Cost:\n" + truncation(((carcost/(-0.1))*(1-(Math.Pow(1.1, quantity))))) + " money";
+        CarLevelText.text = carlevel + "/2500 dealers";
+
+        NuclearCostText.text = "+" + quantity + "\n\n" + "Cost:\n" + truncation(((nuclearcost/(-0.1))*(1-(Math.Pow(1.1, quantity))))) + " money";
+        NuclearLevelText.text = nuclearlevel + "/2000 plants";
+
+        TechCostText.text = "+" + quantity + "\n\n" + "Cost:\n" + truncation(((techcost/(-0.1))*(1-(Math.Pow(1.1, quantity))))) + " money";
+        TechLevelText.text = techlevel + "/1000 firms";
 
         money += moneypersecond * Time.deltaTime;
     }
@@ -130,7 +178,7 @@ public class Money_Script : MonoBehaviour
     }
 
     public void CoffeeClick(){
-        if(money >= ((coffeecost/(-0.1))*(1-(Math.Pow(1.1, quantity))))  && coffeelevel < 5000){
+        if(money >= ((coffeecost/(-0.1))*(1-(Math.Pow(1.1, quantity))))  && coffeelevel < 6000){
             money -= ((coffeecost/(-0.1))*(1-(Math.Pow(1.1, quantity)))) ;
             coffeelevel += quantity;
             coffeecost *= Math.Pow(1.1, quantity);
@@ -138,7 +186,7 @@ public class Money_Script : MonoBehaviour
     }
 
     public void BurgerClick(){
-          if(money >= ((burgercost/(-0.1))*(1-(Math.Pow(1.1, quantity))))   && burgerlevel < 4000){
+          if(money >= ((burgercost/(-0.1))*(1-(Math.Pow(1.1, quantity))))   && burgerlevel < 5000){
             money -= ((burgercost/(-0.1))*(1-(Math.Pow(1.1, quantity)))) ;
             burgerlevel += quantity;
             burgercost *= Math.Pow(1.1, quantity);
@@ -146,10 +194,42 @@ public class Money_Script : MonoBehaviour
     }
 
     public void MowingClick(){
-          if(money >= ((mowingcost/(-0.1))*(1-(Math.Pow(1.1, quantity)))) && mowinglevel < 2500){
+          if(money >= ((mowingcost/(-0.1))*(1-(Math.Pow(1.1, quantity)))) && mowinglevel < 4000){
             money -= ((mowingcost/(-0.1))*(1-(Math.Pow(1.1, quantity))));
             mowinglevel += quantity;
             mowingcost *= Math.Pow(1.1, quantity);
+        }
+    }
+
+     public void MiningClick(){
+          if(money >= ((miningcost/(-0.1))*(1-(Math.Pow(1.1, quantity)))) && mininglevel < 3000){
+            money -= ((miningcost/(-0.1))*(1-(Math.Pow(1.1, quantity))));
+            mininglevel += quantity;
+            miningcost *= Math.Pow(1.1, quantity);
+        }
+    }
+
+     public void CarClick(){
+          if(money >= ((carcost/(-0.1))*(1-(Math.Pow(1.1, quantity)))) && carlevel < 2500){
+            money -= ((carcost/(-0.1))*(1-(Math.Pow(1.1, quantity))));
+            carlevel += quantity;
+            carcost *= Math.Pow(1.1, quantity);
+        }
+    }
+
+     public void NuclearClick(){
+          if(money >= ((nuclearcost/(-0.1))*(1-(Math.Pow(1.1, quantity)))) && nuclearlevel < 2000){
+            money -= ((nuclearcost/(-0.1))*(1-(Math.Pow(1.1, quantity))));
+            nuclearlevel += quantity;
+            nuclearcost *= Math.Pow(1.1, quantity);
+        }
+    }
+
+     public void TechClick(){
+          if(money >= ((techcost/(-0.1))*(1-(Math.Pow(1.1, quantity)))) && techlevel < 1000){
+            money -= ((techcost/(-0.1))*(1-(Math.Pow(1.1, quantity))));
+            techlevel += quantity;
+            techcost *= Math.Pow(1.1, quantity);
         }
     }
 }
