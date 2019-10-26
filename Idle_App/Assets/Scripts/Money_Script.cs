@@ -64,13 +64,13 @@ public class Money_Script : MonoBehaviour
 
         QuantityText.text = "x" + quantity;
 
-        CoffeeCostText.text = "+" + quantity + "\n" + "Cost:\n" + Math.Round(quantity*coffeecost) + " money";
+        CoffeeCostText.text = "+" + quantity + "\n" + "Cost:\n" + truncation(((coffeecost/(-0.1))*(1-(Math.Pow(1.1, quantity))))) + " money";
         CoffeeLevelText.text = coffeelevel + "/5000 shops";
 
-        BurgerCostText.text = "+" + quantity + "\n" + "Cost:\n" + Math.Round(quantity*burgercost) + " money";
+        BurgerCostText.text = "+" + quantity + "\n" + "Cost:\n" + truncation(((burgercost/(-0.1))*(1-(Math.Pow(1.1, quantity))))) + " money";
         BurgerLevelText.text = burgerlevel + "/4000 joints";
 
-        MowingCostText.text = "+" + quantity + "\n" + "Cost:\n" + Math.Round(quantity*mowingcost) + " money";
+        MowingCostText.text = "+" + quantity + "\n" + "Cost:\n" + truncation(((mowingcost/(-0.1))*(1-(Math.Pow(1.1, quantity))))) + " money";
         MowingLevelText.text = mowinglevel + "/2500 mowers";
 
         money += moneypersecond * Time.deltaTime;
@@ -120,26 +120,26 @@ public class Money_Script : MonoBehaviour
     }
 
     public void CoffeeClick(){
-        if(money >= quantity*coffeecost && coffeelevel < 5000){
-            money -= quantity*coffeecost;
+        if(money >= ((coffeecost/(-0.1))*(1-(Math.Pow(1.1, quantity))))  && coffeelevel < 5000){
+            money -= ((coffeecost/(-0.1))*(1-(Math.Pow(1.1, quantity)))) ;
             coffeelevel += quantity;
-            coffeecost *= 1.1;
+            coffeecost *= Math.Pow(1.1, quantity);
         }
     }
 
     public void BurgerClick(){
-          if(money >= quantity*burgercost && burgerlevel < 4000){
-            money -= quantity*burgercost;
+          if(money >= ((burgercost/(-0.1))*(1-(Math.Pow(1.1, quantity))))   && burgerlevel < 4000){
+            money -= ((burgercost/(-0.1))*(1-(Math.Pow(1.1, quantity)))) ;
             burgerlevel += quantity;
-            burgercost *= 1.1;
+            burgercost *= Math.Pow(1.1, quantity);
         }
     }
 
     public void MowingClick(){
-          if(money >= quantity*mowingcost && mowinglevel < 2500){
-            money -= quantity*mowingcost;
+          if(money >= ((mowingcost/(-0.1))*(1-(Math.Pow(1.1, quantity)))) && mowinglevel < 2500){
+            money -= ((mowingcost/(-0.1))*(1-(Math.Pow(1.1, quantity))));
             mowinglevel += quantity;
-            mowingcost *= 1.1;
+            mowingcost *= Math.Pow(1.1, quantity);
         }
     }
 }
