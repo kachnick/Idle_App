@@ -109,8 +109,8 @@ public class Money_Script : MonoBehaviour
 
     public void Update(){
         
-        MoneyText.text = "Money: " + truncation(money);
-        MoneyPerSecText.text = truncation(moneypersecond) + " money/s";
+        MoneyText.text = truncation(money);
+        MoneyPerSecText.text = truncation(moneypersecond) + " per second";
 
         moneypersecond = coffeelevel + (5*burgerlevel) + (20*mowinglevel) + (50*mininglevel) + (100*carlevel) + (250*nuclearlevel) + (500*techlevel);
 
